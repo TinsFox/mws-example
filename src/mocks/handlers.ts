@@ -16,7 +16,7 @@ export const handlers = [
     return HttpResponse.json(null, {
       status: 200,
       headers: {
-        "set-cookie": `token=1234567890;`,
+        "set-cookie": `token=1234567890;max-age=3600`,
       },
     })
   }),
@@ -24,7 +24,7 @@ export const handlers = [
     return HttpResponse.json(null, {
       status: 200,
       headers: {
-        "set-cookie": `token=; HttpOnly; Secure; SameSite=Strict;`,
+        "set-cookie": `token=1234567890; max-age=0`,
       },
     })
   }),

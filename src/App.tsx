@@ -1,15 +1,11 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import reactLogo from "./assets/react.svg"
 import viteLogo from "/vite.svg"
 import "./App.css"
 
 function App() {
   const [count, setCount] = useState(0)
-  useEffect(() => {
-    fetch("/api/user")
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-  }, [])
+
   return (
     <>
       <div>
@@ -35,7 +31,17 @@ function App() {
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <button onClick={() => fetch("/api/login")}>Login</button>
         <button onClick={() => fetch("/api/logout")}>Logout</button>
-        <button onClick={() => fetch("/api/user")}>Get User</button>
+        <button
+          onClick={() => {
+            fetch("/api/user", {
+              credentials: "include",
+            })
+              .then((response) => response.json())
+              .then((data) => console.log(data))
+          }}
+        >
+          Get User
+        </button>
       </div>
     </>
   )
